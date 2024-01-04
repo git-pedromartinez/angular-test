@@ -1,0 +1,26 @@
+<div class="p-12" *ngrxLet="prices$ as prices">
+  <div class="mt-4">
+    <p>LIST OF PRICES: {{ prices | json }}</p>
+  </div>
+  <div class="mt-4" *ngFor="let day of daysBuySell(prices, prices.length)">
+    <mat-card>
+      <mat-card-content>
+        <p>
+          BEST TIME TO BUY: <strong>{{ day.buy }}</strong>
+        </p>
+        <p>
+          BEST TIME TO SELL: <strong>{{ day.sell }}</strong>
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="mt-4">
+    <p>
+      PROFIT:
+      <strong class="text-green-700">{{
+        maxProfit(prices, 0, prices.length - 1) | currency
+      }}</strong>
+    </p>
+  </div>
+</div>
